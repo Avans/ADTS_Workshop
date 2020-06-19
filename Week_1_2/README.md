@@ -1,4 +1,4 @@
-# Architecture for data science: <br />Excercises for week 1 and 2
+# 1. Excercises for week 1 and 2 <!-- omit in toc -->
 
 In this workshop you will learn how to make use of LoRaWAN (a low power wide area network solution).
 You will:
@@ -7,6 +7,16 @@ You will:
  * Use a script for registering another 259 devices
  * Use the command line tool for simulating message
  * Create a decoder so that messages can be read
+
+**Table of contents**
+- [1. Register on The Things Network](#1-register-on-the-things-network)
+- [2. The data](#2-the-data)
+  - [2.1. Simulated sensors](#21-simulated-sensors)
+  - [2.2. Register you first device](#22-register-you-first-device)
+- [3. Register you client on The Things Network](#3-register-you-client-on-the-things-network)
+- [4. View your message just sent](#4-view-your-message-just-sent)
+- [5. Run the script to register devices for all countries](#5-run-the-script-to-register-devices-for-all-countries)
+- [6. Run simulation of devices](#6-run-simulation-of-devices)
 
 ## 1. Register on The Things Network
 The things network is a hub to which sensor messages can be directed. The sensors need to be configured so that they log their messages to your account. The Things Network can subsequently decode the hexadecimal encoded message into readable data and integrate it with other platforms such as data storage providers.
@@ -54,11 +64,11 @@ A sample of the data set is:
 | Macau            | China            | 22.1667 | 113.55 | 2020-03-07 |          10 |        0 |          10 |        0 | Western Pacific       | China_Macau |
 |                  | Russia           | 60      |  90    | 2020-01-26 |           0 |        0 |           0 |        0 | Europe                | Russia      |
 
-### 2.1 Simulated sensors
+### 2.1. Simulated sensors
 As said before, we can register sensors based on their Province/State+Country/Region and provide their (Lat/Long). We will have 260 devices across the globe.
 ![alt text](./Images/sensors_plotted.png "Sensors plotted on the map")
 
-### 2.2 Register you first device
+### 2.2. Register you first device
 We are going to register the first device by hand. The device we are going to register is the one in the Netherlands.
 To do this, take the following steps:
 * Click on Register Device
@@ -71,11 +81,11 @@ To do this, take the following steps:
 * Try to find the setting for the location of this device. Use the values **52.1326, 5.2913**. 
 * If you have set the device's location correctly, you should see on its overview that it is located near Soesterberg.
 
-## Register you client on The Things Network
+## 3. Register you client on The Things Network
 In order to communicate with The Things Network programmaticallly, we have to connect with it using the ttnctl.exe tool provided in this repository.
 The description on this tool and how to use it can be found on https://www.thethingsnetwork.org/docs/network/cli/api.html
 
-* Authenticate yourself using the tool. Run a command line tool by entering CMD in your address bar in the current folder and hit enter (on Windows)
+* Authenticate yourself using the tool. Run a command line tool by entering CMD in your address bar in the current folder and hit enter (on Windows)<br />
   ![alt text](./Images/CMD.png "Command line")
 * Now follow the steps described in the Register and Login section on https://www.thethingsnetwork.org/docs/network/cli/quick-start.html
   * You can skip step 1 (you already have an account)
@@ -86,7 +96,7 @@ The description on this tool and how to use it can be found on https://www.theth
 ttnctl devices simulate netherlands 01343bee0099940012bb0000000086d9
 ```
 
-## View your message just sent
+## 4. View your message just sent
 You have just sent your first message from a device that is located in the Netherlands (just play along with me ;) )! Now try and view your data on The Things Network.
 * Try and find the data just sent on The Things Network.<br/>
 **Note that this data is not persisted! The Things Network is just a hub to integrate with other solutions in your architecture, we will persist the data in next weeks workshop**<br />
@@ -145,7 +155,7 @@ function Decoder(bytes, port) {
 ```
 * Run the command to send a message a second time and go to back to your data and see if it is decoded right and we can read the values.
 
-# Run the script to register devices for all countries
+## 5. Run the script to register devices for all countries
 To do this, the following is required:
 * Python 3.x with the following modules:
   * Pandas
@@ -160,7 +170,7 @@ This may take a while to complete
 
 After completing you should see all of your devices registered in The Things Network.
 
-# Run simulation of devices
+## 6. Run simulation of devices
 You can now run the simulation of devices and check if all of the messages are received by The Things Network. Keep the data tab in The Things Network open. Then execute the following command:
 ```bash
 python simulate_devices
