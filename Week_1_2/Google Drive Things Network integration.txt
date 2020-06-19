@@ -1,0 +1,24 @@
+function doPost(e) {
+  var sheet = SpreadsheetApp.openById("1Ka6FabWh9SxX5hHmO2EX-ap4jVAmR5j9wJvt2qgw6Hw");
+  var firstSheet = sheet.getSheets()[0];
+  firstSheet.setName("TheThingsNetwork data");
+  
+  var jsonData = JSON.parse(e.postData.contents);
+  
+  firstSheet.getRange(1,1,1,2).setValues([['raw data latest record', JSON.stringify(jsonData)]]);
+  //Fil the Second Row with static content
+  firstSheet.getRange(2,1,1,8).setValues([['app_id', 'dev_id', 'hardware_serial', 'port', 'counter', 'payload_raw', 'metadata', 'payload_fields']]);
+  
+  values = []
+  values.push(jsonData.app_id);
+  values.push(jsonData.dev_id);
+  values.push(jsonData.hardware_serial);
+  values.push(jsonData.port);  
+  values.push(jsonData.counter);
+  values.push(jsonData.payload_raw);
+  values.push(JSON.stringify(jsonData.metadata));
+  values.push(JSON.stringify(jsonData.payload_fields));
+  
+  firstSheet.appendRow(values);
+  return ContentService.createTextOutput(JSON.stringify(e))
+}
