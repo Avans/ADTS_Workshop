@@ -1,15 +1,10 @@
 import pandas as pd
-import geopandas as gpd
-import matplotlib.pyplot as plt
-import time
-import numpy as np
 import os
-import json
 import subprocess
-import struct
 
 df = pd.read_csv('./covid_19_clean_complete.csv')
-df['Name'] = df['Country/Region']# + '_' + df['Province/State']
+df['Province/State'] = df['Province/State'].fillna('')
+df['Name'] = df['Country/Region']
 df.loc[df['Province/State'] != '', 'Name'] = df['Country/Region'] + '_' + df['Province/State']
 df['Name'] = df['Name'].str.replace('\'', '')
 df['Name'] = df['Name'].str.replace(' ', '-')
@@ -23,7 +18,7 @@ for key, vals in df_locs:
     name = key[0]
     
     result = subprocess.run(['ttnctl', 'devices', 'register', name], encoding='ascii', shell=True, stdout=subprocess.PIPE)
-    result = subprocess.run(['ttnctl', 'devices', 'set', name, '--latitude', str(key[2]), '--longitude', str(key[3])]
+    result = subprocess.run(['ttnctl', 'devices', 'set', name, '--latitude', str(key[1]), '--longitude', str(key[2])]
             , encoding='ascii', shell=True, stdout=subprocess.PIPE)
     print(result.stdout)
     

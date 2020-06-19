@@ -56,7 +56,7 @@ A sample of the data set is:
 
 ### 2.1 Simulated sensors
 As said before, we can register sensors based on their Province/State+Country/Region and provide their (Lat/Long). We will have 260 devices across the globe.
-![alt text](./sensors_plotted.png "Sensors plotted on the map")
+![alt text](./Images/sensors_plotted.png "Sensors plotted on the map")
 
 ### 2.2 Register you first device
 We are going to register the first device by hand. The device we are going to register is the one in the Netherlands.
@@ -70,3 +70,106 @@ To do this, take the following steps:
   We can simulate the device in the bottom lower, that we will do using a script.<br />
 * Try to find the setting for the location of this device. Use the values **52.1326, 5.2913**. 
 * If you have set the device's location correctly, you should see on its overview that it is located near Soesterberg.
+
+## Register you client on The Things Network
+In order to communicate with The Things Network programmaticallly, we have to connect with it using the ttnctl.exe tool provided in this repository.
+The description on this tool and how to use it can be found on https://www.thethingsnetwork.org/docs/network/cli/api.html
+
+* Authenticate yourself using the tool. Run a command line tool by entering CMD in your address bar in the current folder and hit enter (on Windows)
+  ![alt text](./Images/CMD.png "Command line")
+* Now follow the steps described in the Register and Login section on https://www.thethingsnetwork.org/docs/network/cli/quick-start.html
+  * You can skip step 1 (you already have an account)
+  * ***Important: You cannot CTRL+V in a command shell, use right click to do that.***
+*  Now run *'ttnctl applications select'* to select your application.
+*  You are now able to run a simulation. The following should succeed: <br />
+```bash
+ttnctl devices simulate netherlands 01343bee0099940012bb0000000086d9
+```
+
+## View your message just sent
+You have just sent your first message from a device that is located in the Netherlands (just play along with me ;) )! Now try and view your data on The Things Network.
+* Try and find the data just sent on The Things Network.<br/>
+**Note that this data is not persisted! The Things Network is just a hub to integrate with other solutions in your architecture, we will persist the data in next weeks workshop**<br />
+There are two ways to do this:
+  1. View all devices data
+  2. View just the data of one device
+* Unfortunately, this is the encoded message and we cannot read that. **Remember why it is encoded?** I have higlighted the parts that add up to the different fields, we just have to run a script to decode it again.
+![alt text](./Images/payload.png "Payload")
+* Luckily, the Things Network can decode it for us if we provide a script. Most sellers provide their scripts with their devices and so have I. Try to find the place where you can enter your decoder and copy/paste the following into that box:
+```javascript
+function DecodeCovidPayload(data){
+    var obj = {};
+    var curIndex = 0;
+
+    function hexToInt(length){
+        var vals = data.slice(curIndex, curIndex + length);
+        var strValue = '0x';
+        for (i in vals) {
+            strValue += ('00' + vals[i].toString(16)).slice(-2);
+        }
+
+        value = parseInt(strValue);
+
+        curIndex = curIndex + length;
+        return value;
+    }
+
+    function hexToGeo(length){
+        positive = data[curIndex] > 0;
+
+        var vals = data.slice(curIndex + 1, curIndex + length);
+        var strValue = '0x';
+        for (i in vals) {
+            strValue += ('00' + vals[i].toString(16)).slice(-2);
+        }
+        value = parseInt(strValue) * 1.0 / 10000;
+
+        if (!positive)
+            value *= -1;
+
+        curIndex = curIndex + length;
+        return value;
+    }
+
+    obj.Date = hexToInt(length=4);
+    obj.Confirmed = hexToInt(length=3);
+    obj.Deaths = hexToInt(length=3);
+    obj.Recovered = hexToInt(length=3);
+    obj.Active = hexToInt(length=3);
+    return obj;
+}
+
+function Decoder(bytes, port) {
+  return DecodeCovidPayload(bytes);
+}
+```
+* Run the command to send a message a second time and go to back to your data and see if it is decoded right and we can read the values.
+
+# Run the script to register devices for all countries
+To do this, the following is required:
+* Python 3.x with the following modules:
+  * Pandas
+* The file *covid_19_clean_complete.csv* in the same folder
+* The file TTNCTL.exe in the same folder
+
+The script can be ran by executing the command:
+```bash
+python register_devices.py
+```
+This may take a while to complete
+
+After completing you should see all of your devices registered in The Things Network.
+
+# Run simulation of devices
+You can now run the simulation of devices and check if all of the messages are received by The Things Network. Keep the data tab in The Things Network open. Then execute the following command:
+```bash
+python simulate_devices
+```
+
+If you want to send data from a certain data on forward use the following command:
+```bash
+python simulate_devices <<date>>
+```
+<\<date\>> can be replaced by a number formatted date like 20200430 (yyyymmdd)
+
+Again, note that The Things Network does not store your data and that it will be lost. Next week(s) we are going to integrate with a storage provider to persist the data.
