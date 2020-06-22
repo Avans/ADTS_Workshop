@@ -141,11 +141,14 @@ function DecodeCovidPayload(data){
         return value;
     }
 
-    obj.Date = hexToInt(length=4);
-    obj.Confirmed = hexToInt(length=3);
-    obj.Deaths = hexToInt(length=3);
-    obj.Recovered = hexToInt(length=3);
-    obj.Active = hexToInt(length=3);
+    var date = hexToInt(length=4).toString()
+    obj.date = date.substring(0, 4)+'-'+date.substring(4, 6)+'-'+date.substring(6, 8);
+    obj.confirmed = hexToInt(length=3);
+    obj.deaths = hexToInt(length=3);
+    obj.recovered = hexToInt(length=3);
+    obj.active = hexToInt(length=3);
+    obj.lat = hexToGeo(length=5);
+    obj.long = hexToGeo(length=5);
     return obj;
 }
 

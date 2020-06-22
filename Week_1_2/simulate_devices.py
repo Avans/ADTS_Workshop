@@ -28,6 +28,16 @@ df['Date'] =  pd.to_datetime(df['Date'])
 if isinstance(date_arg, datetime.datetime):
         df = df[df['Date'] >= date_arg]
 
+def format_geo(val):
+    val = int(val * 10000)
+    if val >= 0:
+        return '01' + '{0:0{1}x}'.format(val, 8)
+    else:
+        return '000' + '{0:0{1}x}'.format(val, 8)[1:]
+
+df['Lat_hex'] = df['Lat'].apply(format_geo)
+df['Long_hex'] = df['Long'].apply(format_geo)
+
 df['Date_hex'] = df['Date'].apply(lambda x: '{0:0{1}x}'.format(int(x.strftime('%Y%m%d')), 8))
 
 df['Confirmed_hex'] = df['Confirmed'].astype(int).apply(lambda x: '{0:0{1}x}'.format(x, 6))
@@ -35,7 +45,7 @@ df['Deaths_hex'] = df['Deaths'].astype(int).apply(lambda x: '{0:0{1}x}'.format(x
 df['Recovered_hex'] = df['Recovered'].astype(int).apply(lambda x: '{0:0{1}x}'.format(x, 6))
 df['Active_hex'] = df['Active'].astype(int).apply(lambda x: '{0:0{1}x}'.format(x, 6))
 
-selection = df[['Name', 'Date_hex', 'Confirmed_hex', 'Deaths_hex', 'Recovered_hex', 'Active_hex']]
+selection = df[['Name', 'Date_hex', 'Confirmed_hex', 'Deaths_hex', 'Recovered_hex', 'Active_hex', 'Lat_hex', 'Long_hex']]
 counter = 0
 for _, row in selection.iterrows():
     counter += 1
