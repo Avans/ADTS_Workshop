@@ -149,6 +149,7 @@ function DecodeCovidPayload(data){
     obj.active = hexToInt(length=3);
     obj.lat = hexToGeo(length=5);
     obj.long = hexToGeo(length=5);
+    obj.position = {"latitude":obj.lat, "longitude":obj.long };
     return obj;
 }
 
