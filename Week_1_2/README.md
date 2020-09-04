@@ -1,3 +1,14 @@
+```diff
+! Update on Friday September 4th. Changes are noted in orange.
+```
+
+```diff
+! Be sure to have executed the followwing steps:
+```
+* Downloaded the folder from github
+![alt text](./Images/Download_Folder.png "How to download the folder from github")
+* Extracted/Unzipped it to a folder where you can find it.
+
 # 1. Excercises for week 1 and 2 <!-- omit in toc -->
 
 In this workshop you will learn how to make use of LoRaWAN (a low power wide area network solution).
@@ -88,12 +99,18 @@ The description on this tool and how to use it can be found on https://www.theth
 * Authenticate yourself using the tool. Run a command line tool by entering CMD in your address bar in the current folder and hit enter (on Windows)<br />
   ![alt text](./Images/CMD.png "Command line")
 * Now follow the steps described in the Register and Login section on https://www.thethingsnetwork.org/docs/network/cli/quick-start.html
+```diff
+! You only have to execute steps 2 & 3 of the section "Register and Login", if you have done that, you can return to this assignment.
+```
   * You can skip step 1 (you already have an account)
   * ***Important: You cannot CTRL+V in a command shell, use right click to do that.***
 *  Now run *'ttnctl applications select'* to select your application.
 *  You are now able to run a simulation. The following should succeed: <br />
+```diff
+! This code has changed, it should work now.
+```
 ```bash
-ttnctl devices simulate netherlands 01343bee0099940012bb0000000086d9
+ttnctl devices simulate netherlands 01343ABE000000000000000000000000010007F46D010000CEB1
 ```
 
 ## 4. View your message just sent
@@ -158,8 +175,15 @@ function Decoder(bytes, port) {
 }
 ```
 * Run the command to send a message a second time and go to back to your data and see if it is decoded right and we can read the values.
+```diff
+! You can see your decoded data when you scroll to the right.
+! Alternatively, you can click the blue arrow on the left and the message will expand. Now you can see your decoded data more clearly.
+```
 
 ## 5. Run the script to register devices for all countries
+```diff
+! If you get an error, be sure to have completed section 3. Escpecially check (or recheck) if you did the one but last dot.
+```
 To do this, the following is required:
 * Python 3.x with the following modules:
   * Pandas
@@ -177,13 +201,25 @@ After completing you should see all of your devices registered in The Things Net
 ## 6. Run simulation of devices
 You can now run the simulation of devices and check if all of the messages are received by The Things Network. Keep the data tab in The Things Network open. Then execute the following command:
 ```bash
-python simulate_devices
+python simulate_devices.py
+```
+
+```diff
+! The arguments below have been changed. These are the latest.
 ```
 
 If you want to send data from a certain data on forward use the following command:
 ```bash
-python simulate_devices <<date>>
+python simulate_devices --mindate 20200430
 ```
-<\<date\>> can be replaced by a number formatted date like 20200430 (yyyymmdd)
+20200430 can be replaced by a number formatted date likeyyyymmdd
+
+The same way countries can be filtered, using the following:
+```bash
+python simulate_devices --countries Netherlands,Belgium
+```
+Netherlands,Belgium can be replaced by the country or countries of your choice. These must be comma separated (without using a space).
+
+Both arguments --mindate and --countries can be used simultaniously.
 
 Again, note that The Things Network does not store your data and that it will be lost. Next week(s) we are going to integrate with a storage provider to persist the data.

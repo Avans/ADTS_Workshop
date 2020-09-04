@@ -5,11 +5,15 @@ import sys
 import datetime
 
 date_arg = None
+countries = []
 
-if len(sys.argv) > 1:
-        date_arg = sys.argv[1]
-        date_arg = pd.to_datetime(date_arg, errors='ignore')
+if '--minDate' in sys.argv:
+        date_arg = pd.to_datetime(sys.argv[sys.argv.index('--minDate') + 1], errors='ignore')
 
+if '--countries' in sys.argv:
+        countries = sys.argv[sys.argv.index('--countries') + 1].split(',')
+
+print(countries)
 
 df = pd.read_csv('./covid_19_clean_complete.csv')
 df['Province/State'] = df['Province/State'].fillna('')
@@ -27,6 +31,9 @@ df['Date'] =  pd.to_datetime(df['Date'])
 
 if isinstance(date_arg, datetime.datetime):
         df = df[df['Date'] >= date_arg]
+
+if len(countries) > 0:
+        df = df[df['Name'].isin(countries)]
 
 def format_geo(val):
     val = int(val * 10000)
@@ -46,6 +53,7 @@ df['Recovered_hex'] = df['Recovered'].astype(int).apply(lambda x: '{0:0{1}x}'.fo
 df['Active_hex'] = df['Active'].astype(int).apply(lambda x: '{0:0{1}x}'.format(x, 6))
 
 selection = df[['Name', 'Date_hex', 'Confirmed_hex', 'Deaths_hex', 'Recovered_hex', 'Active_hex', 'Lat_hex', 'Long_hex']]
+
 counter = 0
 for _, row in selection.iterrows():
     counter += 1
