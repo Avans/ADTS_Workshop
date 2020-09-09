@@ -146,7 +146,7 @@ For larger projects, you could take a look into MongoDB or Cassandra DB (both av
 *Note, if you cannot find 'settings', you probably haven't enabled developer mode. On the top right of your screen you can enable it, the button will be orange if enabled.*
 
 ![alt text](./Images/Developer_mode.png "Developer mode")
-![alt text](./Images/Developer_mode_on.png "Developer mode is on")
+![alt text](./Images/developer_mode_on.png "Developer mode is on")
 
 *Developer mode is off versus developer mode is on* 
 
