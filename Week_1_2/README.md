@@ -6,7 +6,7 @@
 ! Be sure to have executed the followwing steps:
 ```
 * Downloaded the folder from github
-![alt text](./Images/Download_Folder.png "How to download the folder from github")
+![alt text](./Images/Download_folder.png "How to download the folder from github")
 * Extracted/Unzipped it to a folder where you can find it.
 
 # 1. Excercises for week 1 and 2 <!-- omit in toc -->
