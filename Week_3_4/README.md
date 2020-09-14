@@ -165,7 +165,7 @@ Now that we have created a database and a collection, we want to be able to send
   * URL: Find the URL of your collection in the settings of your collection in Restdb.io
   * Method: POST
   * Authorization: leave blank
-  * Custom header name: x-apikey
+  * Custom header name: 'x-apikey'
   * Custom header value: <\<paste your copied API-key here.\>>
 
 ## 2.4. Verify that your integration works
