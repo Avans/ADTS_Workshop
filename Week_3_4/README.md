@@ -74,7 +74,7 @@ We now have to publish this endpoint so that we can connect The Things Network t
   * Execute the app as: Me
   * Who can access the app: Anyone, even anonymous
 * Click on deploy, it'll ask for permissions and you should grant those permissions.
-* You could possibly get the following message:
+* You could possibly get the following message:<br />
 ![alt text](./Images/App_isnt_verified.png "App isn't verified")
   * In this case, click on advanced and choose "Go to <\<your project name\>> (unsafe)<br />
     *Trust me, it is safe, we all now what we have done in this script.*
