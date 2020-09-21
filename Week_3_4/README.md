@@ -1,4 +1,4 @@
-# 2. Excercises for week 3 and 4 <!-- omit in toc -->
+# Excercises for week 3 and 4 <!-- omit in toc -->
 
 In this workshop you will learn how to channel your device messages from a message Hub (The Things Network) to a structured and to an unstructured data storage provider.
 

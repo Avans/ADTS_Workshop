@@ -7,5 +7,6 @@ Excercises can be found in the subfolders divided per week or two weeks. Follow 
 Links to exercises:
  * [Exercise 1 (Workshop 1 and 2)](./Week_1_2)
  * [Exercise 2 (Workshop 3 and 4)](./Week_3_4)
+ * [Exercise 3 (Workshop 5 and 6)](./Week_5_6)
 
 Made by Martijn Schuurmans (mmaa.schuurmans@avans.nl)
