@@ -16,9 +16,9 @@ You will:
   - [1.3. Filtering](#13-filtering)
     - [1.3.1. Report settings](#131-report-settings)
   - [1.4. Sharing and notifications](#14-sharing-and-notifications)
-- [Using your RestDB NO-SQL data](#using-your-restdb-no-sql-data)
-  - [Using your RestDB data](#using-your-restdb-data)
-- [2. Google Colaboratory](#2-google-colaboratory)
+- [2. Using your RestDB NO-SQL data](#2-using-your-restdb-no-sql-data)
+  - [2.1. Using your RestDB data](#21-using-your-restdb-data)
+- [3. Google Colaboratory](#3-google-colaboratory)
 
 # 1. Google Data Studio
 
@@ -102,7 +102,7 @@ A report isn't of use much if the right people cannot access it. Therefore, thes
 
 Lastly, the report can be emailed daily. Other products often have notification or error warnings that can be set on KPI's, that would result in the best insights of course. Be aware of the sharing and notification settings for these kind of products.
 
-# Using your RestDB NO-SQL data
+# 2. Using your RestDB NO-SQL data
 Your (big) data is often not stored in a Google Sheet. Luckily, other sources can be bound to dashboards. For Google Data Studio, you can choose (virtually) any Google product, including BigQuery. This means that you can embed data sources up to petabytes of scale into this product.
 Additionally, third parties have built connectors so that you can embed other sources into a dashboard.
 
@@ -123,7 +123,7 @@ Additionally, third parties have built connectors so that you can embed other so
   * Now edit your connection, you will see that all of your fields are collected.
   * Again: You can change your connection name in the top. Name it something like 'JSON RestDB Source'.
 
-## Using your RestDB data
+## 2.1. Using your RestDB data
 * Create a new page
 * Add a table to the page and set the source to your new RestDB source.
 * Now you see your empty table...
@@ -142,7 +142,7 @@ Now we will combine our sources. Usually we combine sources such as weather data
 * On metrics select active and payload_fields: active
   * Make sure both are selected to have MAX calculation.
   * Give both of them a different name so you can select them both in your report.
-  * Give the blended data source a good name.
+  * Give the blended data source a good name.<br />
 !['Blend data summary'](Images/Blend_data.png)
 * Now close your data manager and go back to your dashboard.
 * Add a table, set its data source to your new blend.
@@ -155,6 +155,6 @@ We have shown that we can use several types of data sources in our dashboards, t
 
 Next, we are going to use our data in a machine learning environment.
 
-# 2. Google Colaboratory
+# 3. Google Colaboratory
 
 To be created.
