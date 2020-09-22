@@ -10,17 +10,21 @@ You will:
  * Link your data from both your Google Sheet and your NO SQL database to your python script.
 
 **Table of contents**
-- [1. Google Data Studio](#1-google-data-studio)
+- [1. Visualization: Google Data Studio](#1-visualization-google-data-studio)
   - [1.1. Data sources](#11-data-sources)
   - [1.2. Adding a chart](#12-adding-a-chart)
   - [1.3. Filtering](#13-filtering)
     - [1.3.1. Report settings](#131-report-settings)
   - [1.4. Sharing and notifications](#14-sharing-and-notifications)
-- [2. Using your RestDB NO-SQL data](#2-using-your-restdb-no-sql-data)
-  - [2.1. Using your RestDB data](#21-using-your-restdb-data)
-- [3. Google Colaboratory](#3-google-colaboratory)
+  - [1.5. Using your RestDB NO-SQL data](#15-using-your-restdb-no-sql-data)
+  - [1.6. Using your RestDB data](#16-using-your-restdb-data)
+- [2. (Continual) Code development, with Machine learning in mind.](#2-continual-code-development-with-machine-learning-in-mind)
+  - [2.1. Collaboration: Git](#21-collaboration-git)
+  - [2.2. Standardization: Embed in JupyterLab](#22-standardization-embed-in-jupyterlab)
+    - [2.2.1. Sending (pushing) your changes to the cloud.](#221-sending-pushing-your-changes-to-the-cloud)
+  - [2.3. Reproducibility](#23-reproducibility)
 
-# 1. Google Data Studio
+# 1. Visualization: Google Data Studio
 
 We are going to create a dashboard using Google Data Studio. Google offers this service for free and it is a rich environment in which we can create dashboards using cloud services (Software as a Service). Google Data Studio integrates with all other Google products and various integrations for other providers are offered so that you can connect to your data.
 
@@ -102,7 +106,7 @@ A report isn't of use much if the right people cannot access it. Therefore, thes
 
 Lastly, the report can be emailed daily. Other products often have notification or error warnings that can be set on KPI's, that would result in the best insights of course. Be aware of the sharing and notification settings for these kind of products.
 
-# 2. Using your RestDB NO-SQL data
+## 1.5. Using your RestDB NO-SQL data
 Your (big) data is often not stored in a Google Sheet. Luckily, other sources can be bound to dashboards. For Google Data Studio, you can choose (virtually) any Google product, including BigQuery. This means that you can embed data sources up to petabytes of scale into this product.
 Additionally, third parties have built connectors so that you can embed other sources into a dashboard.
 
@@ -123,7 +127,7 @@ Additionally, third parties have built connectors so that you can embed other so
   * Now edit your connection, you will see that all of your fields are collected.
   * Again: You can change your connection name in the top. Name it something like 'JSON RestDB Source'.
 
-## 2.1. Using your RestDB data
+## 1.6. Using your RestDB data
 * Create a new page
 * Add a table to the page and set the source to your new RestDB source.
 * Now you see your empty table...
@@ -155,6 +159,127 @@ We have shown that we can use several types of data sources in our dashboards, t
 
 Next, we are going to use our data in a machine learning environment.
 
-# 3. Google Colaboratory
+# 2. (Continual) Code development, with Machine learning in mind.
+In this section we are going to practice with some of the concepts of continual machine learning.
 
-To be created.
+We are going to make steps in:
+* Collaboration
+* Standardization
+* Reproducibility
+
+## 2.1. Collaboration: Git
+We are going to use Github for collaboration. This allows us to share our code with team members and be sure to work with them on the same version(s).
+
+Follow the following steps:
+* Install GIT: https://git-scm.com/downloads
+* Create account on Github: https://github.com/
+This is where your code will be stored.
+* Once you have an account, create a new repository for your code by hitting the green 'new' button.
+  * Give it a name that suits you.
+  * Make it a private repository by hitting the button.
+
+You have now created a repository for your code, now we want to be able to collaborate.
+* Go to 'Settings' and then to 'Manage Access'
+
+You can see that your repositor is private. This means that no one else but you can access this repository. Now we want to add a collaborator.
+* Click on 'invite a collaborator'.
+* Ask a fellow student his or her username on github and add him/her to your repository. You can both now collaborate using the same code.
+
+## 2.2. Standardization: Embed in JupyterLab
+You have already made use of JupyterLab in the Python workshops. Of course we want to standardize this method of working with one tool only. Therefore, we are going to integrate your Github settings into JupyterLab so that you can collaborate with your teammates.
+
+* Open Jupyter Lab
+* Go to Settings and check 'Enable Extension Manager'.
+
+On the left of your screen you have now got an image of a puzzle piece, this is the extension manager.
+
+* Open the extension manager and search for GIT. The top selection should be *@jupyterlab/git*. Install this extension.
+* Now open Anaconda Prompt (from Anaconda itself or from the Windows Menu, see image)<br/>
+!['Anaconda prompt'](Images/AnacondaPrompt.png)
+* Rebuild Jupyter Lab by executing the following command:
+  ```bash
+  jupyter lab build
+  ``` 
+
+When refreshing JupyterLab you should see the Git plugin:
+!['Git plugin'](Images/GitPlugin.png)
+
+Now that we have a git-repository and the plugin in Jupyter Lab, we can open it in this new environment.
+* Open the git tab in Jupyter Lab
+
+Now you see three options: 
+1. *Open the file browser:* This lets you choose a directory which is a 'clone' of a Git repository and work from there.
+2. *Intialize a Repository*: This lets you create a new repository (like we just did on Github).
+3. *Clone a repository*: This lets you clone a repository from somewhere.
+
+*To clone a repository means that a folder structure (git repository) is copied to your local machine. So everyone in your collaborating team has got a 'clone' (copy). The version on Git (in this case Github) is the master, the one that contains the truth, the actual version we work with. We are going to send our updates to Github later in this section to be sure the truth-version is updated with our version.*
+
+* Choose 'Clone a repository' and use the URL of your Github repository.
+* It prompts for your username and password as your repository was marked private (these will be stored so that later on you don't have to enter them again later on.)
+* Open the newly created, empty, folder (remember we have got a copy?).
+* Create a notebook with a name that suits you.
+* For now: add one line and execute this line:
+  ```python
+  print('test')
+  ```
+
+We have now got a local copy of the repository on Github. But remember, it is a copy and it is not synchronised by default. We have to stage our files, commit them and then push our changes to the server so that the truth version on Github has got these changes too.
+
+* Open the Git tab again.
+* You should see something like this (my mouse is hovering over MyNotebook.ipynb):
+!['Github tab'](Images/GithubTab.png)
+* Click on the **+**-sign to stage this file so that it can be sent to Github.
+* Now in the bottom add a description of your changes such as:
+  *Created new notebook with testprint.*
+* Click commit.
+
+Now that you have committed your changes you have marked them as your set of changes that need to be sent to Github. Remember: These changes are not sent yet! This is all just on your own laptop.
+
+### 2.2.1. Sending (pushing) your changes to the cloud.
+Now that we have staged (and commited) our changes, we are ready to send them to Github.
+
+Do you see the two cloud icons in the top of the Github tab in Jupyter Lab? We need to use them to **pull** or **push** our changes from or to the server.
+
+* Click on the cloud icon with the arrow pointing upwards. This lets you push your changes to Github. You should see a dialog that confirms your push and (hopefully) it mentions that it did this successfully.
+* Open your Github repository in your browser. If everything went correct, you should see that the truth has changed, it now contains your new files.
+
+Now all of your collaborators can pull your new truth.
+The next steps only work if your collaborator has pushed changes:
+
+* On the Github tab you can now click on the pull icon. (This is the cloud icon with the arrow pointing downwards).
+
+The Git plugin now downloads all the files of the truth (Github in this case). In case of conflicts with your local files it tries to 'merge' them. If this cannot be done automatically, you will be prompted to merge your files by hand.
+
+## 2.3. Reproducibility
+
+First, we need to connect to our data. We can embed both our Google Sheet or our RestDB data.
+
+* Create a new Jupyter Notebook in your newly created Github repository.
+* 
+<!-- 
+- Clone github repository and 
+
+- Connect with google sheet
+- Connect with RestDB
+
+- Show random number (without seed)
+- Repeat, different records
+
+- Now with seed
+- Repeat, same records
+
+- Do shape, no. of records
+- Run simulation -> different no. of records
+- Include csv in Git repo
+- Do shape -> repeatable number of records.
+
+- Commit
+- Push
+
+- Github add collaborators
+
+- Aanpassing
+- Commit
+- Push
+
+- View history -->
