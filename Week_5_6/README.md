@@ -22,8 +22,8 @@ You will:
   - [2.1. Collaboration: Git](#21-collaboration-git)
   - [2.2. Standardization: Embed in JupyterLab](#22-standardization-embed-in-jupyterlab)
     - [2.2.1. Sending (pushing) your changes to the cloud.](#221-sending-pushing-your-changes-to-the-cloud)
-  - [Scalability](#scalability)
-  - [2.3. Reproducibility](#23-reproducibility)
+  - [2.3. Scalability](#23-scalability)
+  - [2.4. Reproducibility](#24-reproducibility)
 
 # 1. Visualization: Google Data Studio
 
@@ -251,7 +251,7 @@ The next steps only work if your collaborator has pushed changes:
 
 The Git plugin now downloads all the files of the truth (Github in this case). In case of conflicts with your local files it tries to 'merge' them. If this cannot be done automatically, you will be prompted to merge your files by hand.
 
-## Scalability
+## 2.3. Scalability
 
 You are familiar with JupyterLab on your notebook. Unfortunately, your notebook is just one computer with limited resources. if you want to do heavy calculations, your notebook will probably not suffice. A free alternative is Google Colaboratory. This environment lets you run your notebooks on fast computers with the options of using GPU (Graphical Processing Units) or TPU (Tensor Processing Units).
 This means that heavy calculations can be done on hardware that is designed to do these calculations faster than when calculating in memory.
@@ -264,7 +264,7 @@ This means that heavy calculations can be done on hardware that is designed to d
   * Or connect to your github repository to download the notebook (Colab does not support uploading to Github again though).
 * Follow the instructions in the notebook.
 
-## 2.3. Reproducibility
+## 2.4. Reproducibility
 
 We are going back to our JupyterLab environment now to see what we can do on reproducibility.
 
