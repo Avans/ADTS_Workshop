@@ -256,7 +256,7 @@ The Git plugin now downloads all the files of the truth (Github in this case). I
 You are familiar with JupyterLab on your notebook. Unfortunately, your notebook is just one computer with limited resources. if you want to do heavy calculations, your notebook will probably not suffice. A free alternative is Google Colaboratory. This environment lets you run your notebooks on fast computers with the options of using GPU (Graphical Processing Units) or TPU (Tensor Processing Units).
 This means that heavy calculations can be done on hardware that is designed to do these calculations faster than when calculating in memory.
 
-* Download the following Jupyter Notebook:  [ADTS_OpenGoogleSheet.ipynb](./ATDS_OpenGoogleSheet.ipynb)
+* Download the following Jupyter Notebook:  [ADTS_OpenGoogleSheet.ipynb](./ATDS_OpenGoogleSheet.ipynb){:target="_blank"}
 * Go to https://colab.research.google.com/
 * Choose:
   * Add the sheet to your drive and open it from there;
@@ -268,6 +268,6 @@ This means that heavy calculations can be done on hardware that is designed to d
 
 We are going back to our JupyterLab environment now to see what we can do on reproducibility.
 
-* Download the following Jupyter Notebook:  [ADTS_OpenGoogleSheet.ipynb](./ATDS_OpenGoogleSheet.ipynb)
+* Download the following Jupyter Notebook:  [ADTS_Reproducibility.ipynb](ATDS_Reproducibility.ipynb){:target="_blank"}
 * Open it in JupyterLab.
 * Follow its instructions.
