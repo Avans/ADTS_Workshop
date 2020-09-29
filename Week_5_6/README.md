@@ -61,9 +61,9 @@ In the following image you can see the data parts that you have in a Dashboard. 
   CONCAT(lat, ",", long)
   ```
   * Go back and set the type of this field to Geo -> Latitude, Longitude. We will use it later.
-* We also want two fields: Country and Region. These should be derived from dev_id. Can you do that? Tip: For country we can use the regex (for regions: replace the 0 with a 1). The regex splits a string based on underscores.
+* We also want two fields: Country and Region. These should be derived from dev_id. Can you do that? Tip: For country we can use the regex (for regions: replace the 0 with a 1). The regex splits a string based on underscores, use the following Data Studio function: REGEXP_EXTRACT, pass the correct field and pass the following regular expression.
   ```
-  ^(?:[^\\_]*\\_){0}([^\\_]*)
+  '^(?:[^\\_]*\\_){0}([^\\_]*)'
   ```
 
 You can imagine that, with self service dashboarding, you need to do a lot of work here. Prepare your data source to be as helpfull as possible so that no incorrect conclusions will be made. At this point we created an embedded resource, but you can choose to make it reusable so that it is no longer embedded in this dashboard. Users will be able to choose your data source when creating new dashboards so that they no longer have to map their data set themselves anymore.
