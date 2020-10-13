@@ -268,6 +268,6 @@ This means that heavy calculations can be done on hardware that is designed to d
 
 We are going back to our JupyterLab environment now to see what we can do on reproducibility.
 
-* Download the following Jupyter Notebook: [ATDS_Reproducibility.ipynb](./ATDS_Reproducibility.ipynb.ipynb)
+* Download the following Jupyter Notebook: [ATDS_Reproducibility.ipynb](./ATDS_Reproducibility.ipynb)
 * Open it in JupyterLab.
 * Follow its instructions.
